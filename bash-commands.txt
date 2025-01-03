@@ -1,0 +1,50 @@
+> STDIN / STDOUT / STDERR / IO REDIRECTION
+------------------------------------------
+ls                            # Lists files and folder in a directory.
+ls > output                   # Writes the results to a file called "output". OVERWRITES if used again on the same file.
+cat output                    # Print the result from the ls command that is stored in the output file.
+
+who                           # Show users that are logged in.
+who >> output                 # Two ">>" writes the result to the output file but it doesn't OVERWRITE, it APPENDS to the file.
+
+grep root /etc/*              # Shows output with errors ("Permission denied" entries).
+grep root /etc/* 2>/dev/null  # Removes the errors. /dev/null = A special device that discards the previous errors.
+
+sudo -i                       # Open a root shell.
+ps aux                        # List all running processes.
+
+ls /proc/                     # Lists what the kernel is doing.
+ls /proc/<process_id>         # Lists the details of what a specific process is doing.
+ls -l /proc/<process_id>/fd   # Lists the file descriptor of a specific process id. Here you can see what a process is connected to; sockets, logs and so on.
+
+ps aux | less                 # Pipes "ps aux" to the "less" command.
+man -k user                   # Searches man pages for the keyword "user", creates a lot of results!
+man -k user | grep 8          # Searches man pages for the keyword "user" but only shows results from chapter 8 (sysadmin commands).
+
+> INTERNAL COMMANDS
+-------------------
+help                          # Shows the internal commands.
+help <command>                # Shows how to use the specific command.
+
+> VARIABLES
+-----------
+echo $SHELL                   # Shows the name / path of the current shell.
+
+myvar=green                   # Creates a local variable called "myvar" with the value "green".
+echo $myvar                   # Prints "green".
+echo ${myvar}1                # Prints "green1". Appends the "1" to the variable.
+
+export mynewvar=red           # Creates a global variable called "mynewvar" with the value "red".
+bash                          # Opens a new sub-shell.
+echo $mynewvar                # The var created in the previous shell will now exist in this sub-shell and print "red".
+                              # Create variables in the bash startup file to make variables available in all shells.
+
+> ALIAS
+-------
+alias                         # Shows all the current aliases. An alias is used to define your own commands. Not advisable to use in public scripts.
+alias bashinfo='man bash'     # Creates an alias called "bashinfo" which will run the command "man bash" if the user types "bashinfo".
+unalias bashinfo              # Removes the alias.
+
+> USE BASH STARTUP FILES
+------------------------
+*014*
