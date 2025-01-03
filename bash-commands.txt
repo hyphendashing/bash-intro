@@ -47,4 +47,21 @@ unalias bashinfo              # Removes the alias.
 
 > USE BASH STARTUP FILES
 ------------------------
-*014*
+/etc/profile                  # Generic startup file for every login shell.
+/etc/bashrc                   # Generic startup file for opening a subshell.
+~/.bash_profile OR ~/.bashrc  # User specific files for subshells. May be different depending on distro.
+
+> EXIT CODES
+------------
+echo $?                       # Shows the last exit code. 0 = Successful exit code, 1 = Generic error. May be other codes, it's up to the developer.
+
+ls                            # Lists the content of the directory.
+echo $?                       # Prints 0
+ls rgsripgipgpon4np4s         # Will print "cannot access..."
+echo $?                       # Prints 2
+
+Exit codes might be explained in man pages.
+
+>
+-------------
+*029*
