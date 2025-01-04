@@ -161,6 +161,6 @@ awk -F : '{ print $4 }' /etc/passwd  # Prints the 4th element or column of /etc/
 
 ldd $(which awk)                # See dependencies of a awk or any tool.
 
-
->
--------------
+# Use awk to filter column 3 with user ID's lower than 999 but print the entire line (print $0).
+# Sort the user names and use "sed" to replace the results that show "bin/bash" to "bin/zsh".
+awk -F : '$3 > 999 { print $0 }' /etc/passwd | sort | sed 's/\/bin\/bash/\/bin\/zsh/'
