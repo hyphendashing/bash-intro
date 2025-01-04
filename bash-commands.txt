@@ -124,4 +124,43 @@ grep -E 'bo+t' <file>         # An extended expression. Filters output to print 
 
 > CUT AND SORT
 --------------
+cut                           # Filter out fields.
+cut -d : -f 3 /etc/passwd     # Filter and sort output from the 3rd column.
+sort -n / -d                  # "-n" for numeric order, -d for dictionary order.
+                              # sort without any flag(s) will order the output based on the first chracter. For example: "5, 55, 5900, 6, 71, 8..."
 
+awk can be used for more anvanced options.
+
+> TAIL AND HEAD
+---------------
+tail -3 /etc/passwd           # Print the last 3 lines from the directory. ("-n 3" will have the same result.)
+                              # tail on its own shows the last 10 lines by default.
+tail -3 /etc/passwd | head -1 # Prints the first line from the last 3 lines fetched by "tail".
+
+> SED
+-----
+A stream editor for editing files. Print, substitute, edit, delete.
+
+sed -n 3p /etc/passwd           # Prints the 3rd line of /etc/passwd.
+sed -i '$a\Append text' <file>  # Append text to the end of a file.
+sed -i 's/word1/word2' <file>   # Replace word1 with word2. add "/g" to change all occurances of a pattern or word instead of just the first one.
+sed -i -e '2d' <file>           # -i = interractive, -e to edit, "2d" to delete the second line.
+
+> AWK
+-----
+Another way to filter text.
+
+awk -F : '{ print $4 }' /etc/passwd  # Prints the 4th element or column of /etc/passwd. "-F :" is used to set the field separator.
+
+> EXTERNAL TOOLS
+----------------
+- Prefer internal tools.
+- External tools are slower since they need to be fetched from disk.
+- Use "type" to find out if a tool is external or not. For example: "type cd"
+- Use "time <script.sh> to measure the time it takes to run a script. Good for optimizing.
+
+ldd $(which awk)                # See dependencies of a awk or any tool.
+
+
+>
+-------------
