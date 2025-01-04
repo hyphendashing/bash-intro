@@ -35,8 +35,8 @@ echo $myvar                   # Prints "green".
 echo ${myvar}1                # Prints "green1". Appends the "1" to the variable.
 
 export mynewvar=red           # Creates a global variable called "mynewvar" with the value "red".
-bash                          # Opens a new sub-shell.
-echo $mynewvar                # The var created in the previous shell will now exist in this sub-shell and print "red".
+bash                          # Opens a new subshell.
+echo $mynewvar                # The var created in the previous shell will now exist in this subshell and print "red".
                               # Create variables in the bash startup file to make variables available in all shells.
 
 > ALIAS
@@ -62,6 +62,66 @@ echo $?                       # Prints 2
 
 Exit codes might be explained in man pages.
 
->
--------------
-*029*
+> ECHO
+------
+echo -e                       # The -e flag is used to get the correct formatting of commands such as "\b" and "\n".
+\b                            # Backspace.
+\n                            # New line.
+
+> PRINTF
+--------
+Used in C programming and has more formatting options than echo.
+
+%s                            # Treat arguments as strings.
+%d                            # Treat arguments as integers.
+%f                            # Treat arguments as floats.
+
+printf "%s\n" 255 0xff 0377   # Prints each argument on a new line. All arguments are different ways of specifying the number 255.
+0xff                          # Hexadecimal for 255.
+0377                          # Octal number
+printf "%d\n" 255 0xff 0377   # Interprets the arguments as digits and prints "255" "255" "255"
+
+> BASH OPTIONS
+--------------
+set                           # Configure a shell.
+shopt                         # Shows all additional options and it's current status (off / on).
+sex -x                        # Prints the executed command before the result. Test with "ls" for example.
+
+> PATTERNS
+----------
+globbing                      # Used for file patterns in bash.
+globbing: *                   # Matches zero or more characters. For example: "ls *.txt" lists only .txt files withing the current directory.
+globbing: ?                   # Matches any single character.
+globbing: [...]               # Matches any of the characters listed.
+
+shopt +s extglob              # Enables extended globbing which provides additional pattern options.
+?                             # Matches zero or one occurance.
+*                             # Matches zero or more occurances.
++                             # Mathces one or more occurances.
+@                             # Matches one occurance.
+
+> GREP
+------
+ps aux | grep '$USER'              # Print all processes ran by $USER.
+grep 'root' /etc/*                 # Searches and prints the occurance of the text "root" in /etc/.
+grep 'root' /etc/* 2>/dev/null     # Discard any errors from the previous output.
+grep -l 'root' /etc/* 2>/dev/null  # Formats the output to a more simplified list.
+grep -A 1                          # Include 1 line after the specified search.
+grep -B 1                          # Include 1 line before the specified search.
+grep -r                            # Recursive search to include subdirectories.
+
+> REGULAR EXPRESSIONS
+---------------------
+man 7 regex                   # man pages for the regular expressions.
+grep -E                       # Extended regular expressions. (Doesn't always work)
+
+grep '^l' <file>              # Search text lines that start with the letter "l".
+grep '^fin$' <file>           # $ = Line that ends with. Filters the output.
+grep '^fin\b' <file>          # \b = Word that ends with. Filters the output.
+
+grep 'b.*t' <file>            # . = any char. * = any or more times. Filters the output to include anything that starts with "b" and ends with "t".
+grep -E 'bo+t' <file>         # An extended expression. Filters output to print results with one or more "o's".
+
+> CUT AND SORT
+--------------
+
