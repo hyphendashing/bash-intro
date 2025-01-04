@@ -1,0 +1,40 @@
+> CORE BASH SCRIPTING
+---------------------
+"#!/bin/bash"
+"#!/usr/bin/env/bash"            # Different ways of starting a script.
+".sh"                            # Default file extension.
+
+$PATH restrictions can cause execution issues for scripts, consider using:
+"~/bin" or "/usr/local/bin"
+
+echo $?                          # Shows the last exit code. 0 = Successful.
+chmod +x <script>.sh             # Set execute permission before running the script.
+./<script>.sh                    # Run the script.
+
+> QUOTING
+---------
+echo "the value of \$SHELL is $SHELL"    # Use backslash to correctly interpret the first $SHELL variable.
+
+> VARIABLES
+-----------
+declare                          # Use to see more details about a variable. Use "-p" flag to see attributes and values.
+                                 # It can also be used to set an array. See "help declare" for more options.
+
+MYVAR="hello"                    # Creates a variable.
+declare -r $MYVAR                # Makes the variable read-only.
+MYVAR="bye"                      # Changing the variable will fail due to it being read-only.
+
+MYVAR=                           # Clear the value of a variable.
+unset MYVAR                      # Delete variable.
+
+$RANDOM                          # Prints a random number.
+$SECONDS                         # Number of seconds that a bash shell has been running.
+$LINENO                          # Prints the current line in the script.
+$HISTCMD                         # The number of this command in history.
+$GROUPS                          # Prints the array containing the groups that the current user is a member of.
+
+> READ
+------
+read <variable>                  # Stores user input to a variable.
+read                             # Automatically stores the user input in $REPLY.
+
